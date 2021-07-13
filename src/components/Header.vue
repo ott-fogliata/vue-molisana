@@ -5,18 +5,64 @@
         </div>
         <nav>
             <ul>
-                <li>Home</li>
-                <li>Prodotti</li>
-                <li>Chi Siamo</li>
-                <li>Contatti</li>
+                <!-- 
+                    la :key serve a vuejs per identificare
+                    l'elemento in maniera univoca.
+                    Quindi gli attribuiamo un valore 
+                    univoco.
+                -->
+                <li v-for="element in navList" :key="element.id">
+                    <a :href="element.link">{{element.name}}</a>
+                </li>
             </ul>
         </nav>
     </div>
 </template>
 
 <script>
+              /* 'Home',
+                'Prodotti',
+                'Chi Siamo',
+                'Contatti'*/
+
 export default {
-    name: 'Header'
+    name: 'Header',
+    // Il componente ascolta/recepisce la prop di nome nav.
+    /*props: [
+        'navList',
+    ],*/
+    props: {
+        // k= nome prop, v=il tipo della prop (String, Array, Object,...)
+        navList: Array
+    },
+    /*
+    data: function() {
+        return {
+            nav: [
+                {
+                    id: 0,
+                    name: 'Home',
+                    link: '/home'
+                },
+                {
+                    id: 1,
+                    name: 'Prodotti',
+                    link: '/product'  
+                },
+                {
+                    id: 2,
+                    name: 'Chi Siamo',
+                    link: '/who-we-are' 
+                },
+                {
+                    id: 3,
+                    name: 'Contatti',
+                    link: '/contacts' 
+                }
+            ]
+        }
+    } 
+    */
 }
 </script>
 
@@ -47,6 +93,11 @@ export default {
 
                     &:hover {
                         background: $bg-color;
+                    }
+
+                    a { 
+                        color: #000;
+                        text-decoration: none;
                     }
 
                 }

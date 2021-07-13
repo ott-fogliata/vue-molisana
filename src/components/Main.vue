@@ -1,12 +1,26 @@
 <template>
     <div class="main-container">
-         Content goes here 
+        <div class="container">
+         <Card v-for="product in products" :key="product.id" :product="product"/>
+        </div>
     </div>
 </template>
 
 <script>
+
+import Card from './Card.vue'
+
 export default {
-    name: 'Main'
+    name: 'Main',
+    components: {
+        Card
+    },
+    props: ['products'],
+    data: function() {
+        return {
+            
+        }
+    }
 }
 </script>
 
@@ -15,7 +29,12 @@ export default {
 
     .main-container {
         background: url("../assets/fondo-pag-speciali.jpg");
-        height: 300px;
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
     }
 
 </style>
